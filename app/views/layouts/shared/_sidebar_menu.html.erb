@@ -1,0 +1,95 @@
+<div id="sidebar-default" class="main-sidebar fix-scroll">
+  <div class="menu-section">
+    <ul>
+      <li class="option">
+        <%= link_to("Welcome #{current_user.adminUserName}", "#")%>
+      </li>
+      <li class="option">
+        <%=link_to('注文管理', root_path)%>
+      </li>
+
+      <li class="option">
+        <a href="#" data-toggle="sidebar" id="togle" >
+          <span>マスタ管理</span>
+          <i class="fa fa-chevron-down"></i>
+        </a>
+        <ul class="submenu">
+          <li>
+            <%=link_to('商品管理', shoes_path)%>
+          </li>
+          <li>
+            <%=link_to('サイズ管理', shoe_sizes_path)%>
+          </li>
+          <li>
+            <%=link_to('写真管理', photos_path)%>
+          </li>
+          <li>
+            <%=link_to('カテゴリ管理', categories_path)%>
+          </li>
+          <li>
+            <%=link_to('完成品管理', design_products_path)%>
+          </li>
+          <li>
+            <%=link_to('材料管理', materials_path)%>
+          </li>
+          <li>
+            <%=link_to('フォントデータ管理', fonts_path)%>
+          </li>
+          <li>
+            <%=link_to('フォントカラー管理', font_colors_path)%>
+          </li>
+        </ul>
+      </li>
+
+      <li class="option">
+        <%=link_to('在庫管理', stocks_path)%>
+      </li>
+      <li class="option">
+        <a href="#" data-toggle="sidebar" id="togle" >
+          <span>店舗管理</span>
+          <i class="fa fa-chevron-down"></i>
+        </a>
+        <ul class="submenu">
+          <li>
+            <%=link_to('店舗情報', shops_path)%>
+          </li>
+          <li>
+            <%=link_to('ユーザー管理', users_path)%>
+          </li>
+
+          <%if [0,2].include? current_user.isPermission.to_i %>
+            <li>
+              <%=link_to('ランキング管理', rank_of_design_products_path)%>
+            </li>
+          <%end%>
+        </ul>
+      </li>
+
+      <li class="option">
+        <a href="#" data-toggle="sidebar" id="togle" >
+          <span>設定</span>
+          <i class="fa fa-chevron-down"></i>
+        </a>
+        <ul class="submenu">
+          <li>
+            <%=link_to('操作履歴', histories_path)%>
+          </li>
+          <%if [0].include? current_user.isPermission.to_i %>
+            <li>
+              <%=link_to('スクリーン管理', opening_media_path)%>
+            </li>
+          <%end%>
+          <%if [0].include? current_user.isPermission.to_i %>
+            <li>
+              <%=link_to('IP制限', allow_ips_path)%>
+            </li>
+          <%end%>
+        </ul>
+      </li>
+      <li class="option">
+        <%=link_to('ログアウト', destroy_user_session_path, :method => 'delete')%>
+      </li>
+    </ul>
+  </div>
+</div>
+

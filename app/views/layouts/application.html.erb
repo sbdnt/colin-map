@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ClaimHouse</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <style type="text/css">
+    .h_menu{
+        margin: 20px;
+    }
+  </style>
+  <div class="h_menu">
+    <div class="row">
+      <!-- <h2 class="text-center"><strong>Colin Map</strong></h2> -->
+      <p class="navbar-text pull-right">
+        <% if user_signed_in? %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %> &nbsp<strong><%= current_user.email %></strong> 
+            <%if user_signed_in? && current_user.claimeds.present?%>
+              <button type="button" class="btn btn-primary active" id="find_neig" >Find Neighbors</button>
+            <%end%>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> | <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+        <% end %>
+      <p>
+    </div>
+    <%if user_signed_in? && current_user.claimeds.present?%>
+      <%-
+        address = current_user.claimeds.first.try(:address)
+      -%>
+      <%if address.present?%>
+        <h4 style="">Your House Address: <%=address%></h4>
+      <%end%>
+    <%end%>
+  </div>
+</head>
+<body>
+
+<% if notice %>
+  
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

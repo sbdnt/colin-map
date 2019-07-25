@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @claimed.user_id %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @claimed.longitude %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @claimed.latitude %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @claimed.address %>
+</p>
+
+<%= link_to 'Edit', edit_claimed_path(@claimed) %> |
+<%= link_to 'Back', claimeds_path %>
